@@ -11,6 +11,7 @@ SETTINGS = {
         "HOST": ["localhost", ],
         "KEYSPACE": "emotion",
     },
+    "BASE_URL": "http://localhost:5000",
 
     "UPLOAD_FOLDER": os.path.basename('uploads'),
     "ALLOWED_EXTENSIONS": ['png', 'jpg', 'jpeg', 'gif'],

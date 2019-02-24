@@ -2,7 +2,7 @@ import os
 import uuid
 import datetime
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 
 from config import SETTINGS
@@ -61,7 +61,26 @@ def upload_file():
         <title>Upload new File</title>
         <h1>Upload new File</h1>
         <form method=post enctype=multipart/form-data>
-          <input type=file name=image>
-          <input type=submit value=Upload>
+            <input type=file name=image>
+            <input type=submit value=Upload>
         </form>
         '''
+
+
+# read the file
+@app.route('/api/v1/image/<image_id>', methods=["GET"])
+def read_file(image_id):
+    try:
+        rows = session.execute('SELECT * FROM images where id={}'.format(image_id))
+        if rows[0]:
+            return send_from_directory(SETTINGS["UPLOAD_FOLDER"], rows[0].path)
+
+        return jsonify({
+            "success": False
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        })

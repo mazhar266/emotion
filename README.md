@@ -15,7 +15,7 @@ This is the image service of TicketChai
 - Run `python3 setup_db.py` to setup the db for the first time
 - Or execute the `db.sql` in database manually
 - Run `flask run`
-- or run `DEBUG=1 flask run` (this will reload on changes)
+- or run `FLASK_DEBUG=1 flask run` (this will reload on changes)
 
 ### Credits
 
