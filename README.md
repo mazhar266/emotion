@@ -1,12 +1,13 @@
 ## Emotion
 
-This is the image service of TicketChai
+This is a REST API enabled image micro-service
 
 ### Requirements
 
 - Python 3.6 or later
 - Cassandra 3 or later
 - ImageMagick 7 or later
+- Python Flask
 
 ### How to run
 

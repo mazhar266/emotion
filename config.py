@@ -2,8 +2,8 @@ import os
 
 SETTINGS = {
     "INFO": {
-        "name": "TicketChai Emotion",
-        "info": "The image service of TicketChai",
+        "name": "Emotion",
+        "info": "The image micro-service",
         "version": "1.0.0",
     },
 
