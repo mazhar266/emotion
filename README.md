@@ -33,7 +33,4 @@ Send a GET request at
 
 ### Credits
 
-- Mazhar Ahmed
-- Hosne Mubarak Rubai
-
-> Copyright (c) Systech Unimax Limited, TicketChai Limited
+- Mazhar Ahmed - [github.com/mazhar266](https://github.com/mazhar266)
