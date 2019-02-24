@@ -4,6 +4,7 @@ import datetime
 
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
+from wand.image import Image
 
 from config import SETTINGS
 from utils import is_allowed_file, get_cassandra_session
@@ -73,7 +74,44 @@ def read_file(image_id):
     try:
         rows = session.execute('SELECT * FROM images where id={}'.format(image_id))
         if rows[0]:
-            return send_from_directory(SETTINGS["UPLOAD_FOLDER"], rows[0].path)
+            width = request.args.get('width')
+            height = request.args.get('height')
+            if not width or not height:
+                # if resize params are not passed, return the actual file
+                return send_from_directory(SETTINGS["UPLOAD_FOLDER"], rows[0].path)
+            else:
+                filename = "{}/{}x{}#{}".format(
+                    SETTINGS["CACHE_FOLDER"],
+                    width,
+                    height,
+                    rows[0].path
+                )
+                # if there is already a resized file
+                if os.path.isfile(filename):
+                    # serve it
+                    return send_from_directory(SETTINGS["CACHE_FOLDER"], "{}x{}#{}".format(
+                        width,
+                        height,
+                        rows[0].path
+                    ))
+
+                # if there is no resized file, resize it and save
+                with Image(filename=os.path.join(app.config['UPLOAD_FOLDER'], rows[0].path)) as img:
+                    with img.clone() as i:
+                        i.resize(int(width), int(height))
+                        i.save(filename="{}/{}x{}#{}".format(
+                            SETTINGS["CACHE_FOLDER"],
+                            width,
+                            height,
+                            rows[0].path
+                        ))
+
+                # serve it
+                return send_from_directory(SETTINGS["CACHE_FOLDER"], "{}x{}#{}".format(
+                    width,
+                    height,
+                    rows[0].path
+                ))
 
         return jsonify({
             "success": False

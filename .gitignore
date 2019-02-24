@@ -83,6 +83,5 @@ Thumbs.db
 
 # cache directory #
 ###############
-/cache
-/cache/store
-/cache/admin
+cache/*
+!cache/.gitkeep
