@@ -25,7 +25,8 @@ Just send the file as POST in `/api/v1/image` and you will be returned with an I
 
 ### How to use the file
 
-Send a GET request at:
+Send a GET request at
+
 - `/api/v1/image/<ID>` will return the original file
 - `/api/v1/image/<ID>?width=<X>&height=<Y>` will return the resized file
 
