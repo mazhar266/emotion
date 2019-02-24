@@ -77,8 +77,6 @@ Thumbs.db
 .buildpath
 .buildpath/
 /.buildpath
-/uploads
-/uploads/products
 *.sublime-*
 
 # cache directory #
