@@ -1,6 +1,6 @@
 ## Emotion
 
-This is a REST API enabled image micro-service. This service can upload and store images, also serve the original and resized thumb images. It stores data in a Cassandra data store.
+This is an Open Source REST API enabled image micro-service. This service can upload and store images, also serve the original and resized thumb images. It stores data in a Cassandra data store.
 
 ### Requirements
 
